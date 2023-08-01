@@ -30,10 +30,8 @@ jobs:
         run: |
           CGO_ENABLED=0 go build -o integration-tester cmd/integration-tester/main.go
           
-          pushd cmd/load-generator
           CGO_ENABLED=0 go build -o load-generator cmd/load-generator/main.go
           
-          pushd cmd/process-exporter
           CGO_ENABLED=0 go build -o process-exporter -a -tags netgo
 
       - name: Run the integration test
