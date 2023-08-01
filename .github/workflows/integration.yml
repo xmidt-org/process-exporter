@@ -37,4 +37,4 @@ jobs:
       - name: Run the integration test
         shell: bash
         run: |
-          sudo ./integration-tester -write-size-bytes 65536
+          ./integration-tester -write-size-bytes 65536
