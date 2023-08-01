@@ -32,7 +32,7 @@ jobs:
           
           CGO_ENABLED=0 go build -o load-generator cmd/load-generator/main.go
           
-          CGO_ENABLED=0 go build -o process-exporter -a -tags netgo
+          CGO_ENABLED=0 go build -o process-exporter -a -tags netgo cmd/process-exporter/main.go
 
       - name: Run the integration test
         shell: bash
