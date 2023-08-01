@@ -11,6 +11,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/goschtalt/goschtalt"
+	_ "github.com/goschtalt/yaml-decoder"
+	_ "github.com/goschtalt/yaml-encoder"
 	"github.com/ncabatoff/fakescraper"
 	common "github.com/ncabatoff/process-exporter"
 	"github.com/ncabatoff/process-exporter/collector"
@@ -167,7 +170,7 @@ func main() {
 		man = flag.Bool("man", false,
 			"print manual")
 		configPath = flag.String("config.path", "",
-			"path to YAML config file")
+			"path to YAML config file or directory with them")
 		tlsConfigFile = flag.String("web.config.file", "",
 			"path to YAML web config file")
 		recheck = flag.Bool("recheck", false,
@@ -176,6 +179,8 @@ func main() {
 			"log debugging information to stdout")
 		showVersion = flag.Bool("version", false,
 			"print version information and exit")
+		show = flag.Bool("show", false,
+			"print configuration information and exit")
 	)
 	flag.Parse()
 
@@ -194,12 +199,38 @@ func main() {
 
 	var matchnamer common.MatchNamer
 
-	if *configPath != "" {
+	gcfg, err := goschtalt.New(
+		goschtalt.AutoCompile(),
+		goschtalt.StdCfgLayout("/etc/process-exporter", *configPath),
+	)
+	if err != nil {
+		log.Fatalf("error reading config file %q: %v", *configPath, err)
+	}
+	yml, err := gcfg.Marshal()
+	if err != nil {
+		log.Fatalf("error making the updated yaml config file: %v", err)
+	}
+
+	if *debug || *show {
+		log.Println(gcfg.Explain())
+		fmt.Println(string(yml))
+
+		if *show {
+			os.Exit(0)
+		}
+	}
+
+	// This might be a bug in goschtalt ... I'd expect an []byte{} instead of
+	// null\n
+	if string(yml) == "null\n" {
+		yml = []byte{}
+	}
+	if len(yml) != 0 {
 		if *nameMapping != "" || *procNames != "" {
 			log.Fatalf("-config.path cannot be used with -namemapping or -procnames")
 		}
 
-		cfg, err := config.ReadFile(*configPath, *debug)
+		cfg, err := config.GetConfig(string(yml), *debug)
 		if err != nil {
 			log.Fatalf("error reading config file %q: %v", *configPath, err)
 		}
@@ -271,7 +302,11 @@ func main() {
 			</html>`))
 	})
 	server := &http.Server{Addr: *listenAddress}
-	if err := web.ListenAndServe(server, *tlsConfigFile, logger); err != nil {
+	flagsCfg := web.FlagConfig{
+		WebListenAddresses: func() *[]string { rv := []string{*listenAddress}; return &rv }(),
+		WebConfigFile:      tlsConfigFile,
+	}
+	if err := web.ListenAndServe(server, &flagsCfg, logger); err != nil {
 		log.Fatalf("Failed to start the server: %v", err)
 		os.Exit(1)
 	}
