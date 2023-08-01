@@ -818,10 +818,13 @@ github.com/googleapis/gax-go/v2 v2.10.0/go.mod h1:4UOEnMCrxsSqQ940WnTiD6qJ63le2e
 github.com/googleapis/gax-go/v2 v2.11.0/go.mod h1:DxmR61SGKkGLa2xigwuZIQpkCI2S5iydzRfb3peWZJI=
 github.com/googleapis/go-type-adapters v1.0.0/go.mod h1:zHW75FOG2aur7gAO2B+MLby+cLsWGBF62rFAi7WjWO4=
 github.com/googleapis/google-cloud-go-testing v0.0.0-20200911160855-bcd43fbb19e8/go.mod h1:dvDLG8qkwmyD9a/MJJN3XJcT3xFxOKAvTZGvuZmac9g=
+github.com/goschtalt/approx v1.0.0/go.mod h1:Mh0VbpeEgO2Qo2PKGrSuz241D/nj9q7OPegJNWzrbIU=
 github.com/goschtalt/goschtalt v0.3.4/go.mod h1:l9PsWB+jhCh4hnjAblqLUGTUSnxogQcgERZs8V9rg0g=
 github.com/goschtalt/goschtalt v0.6.0/go.mod h1:l9PsWB+jhCh4hnjAblqLUGTUSnxogQcgERZs8V9rg0g=
 github.com/goschtalt/goschtalt v0.22.0 h1:PdQy64RFyMaUlZQ+Zx+2AegJV/C2xZHKcVZ559FMu28=
 github.com/goschtalt/goschtalt v0.22.0/go.mod h1:ulaJ0ILv1Ct5YoAlaqt5zAXI3NYRKgMuv+5w+suaB3A=
+github.com/goschtalt/goschtalt v0.22.1 h1:IcfNMSQMouZUsZnlzQlvGeVaDPJX1oB+hPPXXonpRq8=
+github.com/goschtalt/goschtalt v0.22.1/go.mod h1:GRY3xnUO5EerjBnsm+k7Xk3unZ71Qgj73gdhutc27IY=
 github.com/goschtalt/yaml-decoder v0.0.1 h1:fwXf5OoC2tUm6+FOzMizvh6UITFALw6OWxJTVNgbJwg=
 github.com/goschtalt/yaml-decoder v0.0.1/go.mod h1:b+hYjmM/e9rzRhPB8EKlb+LUwrgntMrOpqEAel3wRGQ=
 github.com/goschtalt/yaml-encoder v0.0.3 h1:vfQ3vXZNvoEFPa3NzOWNtweYVa+2qMh8eqhXByLi2t0=

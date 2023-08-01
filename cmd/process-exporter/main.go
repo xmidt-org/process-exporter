@@ -201,7 +201,7 @@ func main() {
 
 	gcfg, err := goschtalt.New(
 		goschtalt.AutoCompile(),
-		goschtalt.StdCfgLayout("/etc/process-exporter", *configPath),
+		goschtalt.StdCfgLayout("process-exporter", *configPath),
 	)
 	if err != nil {
 		log.Fatalf("error reading config file %q: %v", *configPath, err)
@@ -220,11 +220,6 @@ func main() {
 		}
 	}
 
-	// This might be a bug in goschtalt ... I'd expect an []byte{} instead of
-	// null\n
-	if string(yml) == "null\n" {
-		yml = []byte{}
-	}
 	if len(yml) != 0 {
 		if *nameMapping != "" || *procNames != "" {
 			log.Fatalf("-config.path cannot be used with -namemapping or -procnames")
