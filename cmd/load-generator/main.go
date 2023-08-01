@@ -59,7 +59,7 @@ func setPrName(name string) error {
 
 func waiting() {
 	runtime.LockOSThread()
-	setPrName("waiting")
+	_ = setPrName("waiting")
 	ready <- struct{}{}
 
 	c := make(chan struct{})
@@ -68,7 +68,7 @@ func waiting() {
 
 func userbusy() {
 	runtime.LockOSThread()
-	setPrName("userbusy")
+	_ = setPrName("userbusy")
 	ready <- struct{}{}
 
 	i := 1.0000001
@@ -80,9 +80,9 @@ func userbusy() {
 func diskio(sync bool, writesize int) {
 	runtime.LockOSThread()
 	if sync {
-		setPrName("blocking")
+		_ = setPrName("blocking")
 	} else {
-		setPrName("sysbusy")
+		_ = setPrName("sysbusy")
 	}
 
 	// Use random data because if we're on a filesystem that does compression like ZFS,

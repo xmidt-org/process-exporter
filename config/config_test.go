@@ -2,9 +2,10 @@ package config
 
 import (
 	// "github.com/kylelemons/godebug/pretty"
+	"time"
+
 	common "github.com/ncabatoff/process-exporter"
 	. "gopkg.in/check.v1"
-	"time"
 )
 
 func (s MySuite) TestConfigBasic(c *C) {
@@ -28,22 +29,22 @@ process_names:
 	found, name := cfg.MatchNamers.matchers[0].MatchAndName(bash)
 	c.Check(found, Equals, true)
 	c.Check(name, Equals, "bash")
-	found, name = cfg.MatchNamers.matchers[0].MatchAndName(sh)
+	found, _ = cfg.MatchNamers.matchers[0].MatchAndName(sh)
 	c.Check(found, Equals, false)
-	found, name = cfg.MatchNamers.matchers[0].MatchAndName(ksh)
+	found, _ = cfg.MatchNamers.matchers[0].MatchAndName(ksh)
 	c.Check(found, Equals, false)
 
-	found, name = cfg.MatchNamers.matchers[1].MatchAndName(bash)
+	found, _ = cfg.MatchNamers.matchers[1].MatchAndName(bash)
 	c.Check(found, Equals, false)
 	found, name = cfg.MatchNamers.matchers[1].MatchAndName(sh)
 	c.Check(found, Equals, true)
 	c.Check(name, Equals, "sh")
-	found, name = cfg.MatchNamers.matchers[1].MatchAndName(ksh)
+	found, _ = cfg.MatchNamers.matchers[1].MatchAndName(ksh)
 	c.Check(found, Equals, false)
 
-	found, name = cfg.MatchNamers.matchers[2].MatchAndName(bash)
+	found, _ = cfg.MatchNamers.matchers[2].MatchAndName(bash)
 	c.Check(found, Equals, false)
-	found, name = cfg.MatchNamers.matchers[2].MatchAndName(sh)
+	found, _ = cfg.MatchNamers.matchers[2].MatchAndName(sh)
 	c.Check(found, Equals, false)
 	found, name = cfg.MatchNamers.matchers[2].MatchAndName(ksh)
 	c.Check(found, Equals, true)

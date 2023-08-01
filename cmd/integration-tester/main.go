@@ -60,7 +60,7 @@ func main() {
 	}
 
 	cancel()
-	cmdlg.Wait()
+	_ = cmdlg.Wait()
 
 	if !success {
 		os.Exit(1)

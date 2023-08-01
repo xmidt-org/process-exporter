@@ -8,19 +8,21 @@ import (
 	"github.com/google/go-cmp/cmp/cmpopts"
 )
 
+/*
 type grouptest struct {
 	grouper *Grouper
 	procs   Iter
 	want    GroupByName
 }
 
-//func (gt grouptest) run(c *C) {
-//	_, err := gt.grouper.Update(gt.procs)
-//	c.Assert(err, IsNil)
-//
-//	got := gt.grouper.curgroups()
-//	c.Check(got, DeepEquals, gt.want, Commentf("diff %s", pretty.Compare(got, gt.want)))
-//}
+func (gt grouptest) run(c *C) {
+	_, err := gt.grouper.Update(gt.procs)
+	c.Assert(err, IsNil)
+
+	got := gt.grouper.curgroups()
+	c.Check(got, DeepEquals, gt.want, Commentf("diff %s", pretty.Compare(got, gt.want)))
+}
+*/
 
 func rungroup(t *testing.T, gr *Grouper, procs Iter) GroupByName {
 	_, groups, err := gr.Update(procs)
@@ -193,10 +195,11 @@ func TestGrouperThreads(t *testing.T) {
 				{ThreadID(ID{p + 1, 0}), "t2", Counts{1, 1, 1, 1, 1, 1, 0, 0}, "", States{}},
 			}),
 			GroupByName{
-				"g1": Group{Counts{}, States{}, msi{}, 1, Memory{}, tm, 1, 1, 2, []Threads{
-					Threads{"t1", 1, Counts{}},
-					Threads{"t2", 1, Counts{}},
-				}},
+				"g1": Group{Counts{}, States{}, msi{}, 1, Memory{}, tm, 1, 1, 2,
+					[]Threads{
+						{"t1", 1, Counts{}},
+						{"t2", 1, Counts{}},
+					}},
 			},
 		}, {
 			piinfot(p, n, Counts{}, Memory{}, Filedesc{1, 1}, []Thread{
@@ -205,10 +208,11 @@ func TestGrouperThreads(t *testing.T) {
 				{ThreadID(ID{p + 2, 0}), "t2", Counts{1, 1, 1, 1, 1, 1, 0, 0}, "", States{}},
 			}),
 			GroupByName{
-				"g1": Group{Counts{}, States{}, msi{}, 1, Memory{}, tm, 1, 1, 3, []Threads{
-					Threads{"t1", 1, Counts{1, 1, 1, 1, 1, 1, 0, 0}},
-					Threads{"t2", 2, Counts{1, 1, 1, 1, 1, 1, 0, 0}},
-				}},
+				"g1": Group{Counts{}, States{}, msi{}, 1, Memory{}, tm, 1, 1, 3,
+					[]Threads{
+						{"t1", 1, Counts{1, 1, 1, 1, 1, 1, 0, 0}},
+						{"t2", 2, Counts{1, 1, 1, 1, 1, 1, 0, 0}},
+					}},
 			},
 		}, {
 			piinfot(p, n, Counts{}, Memory{}, Filedesc{1, 1}, []Thread{
@@ -216,9 +220,10 @@ func TestGrouperThreads(t *testing.T) {
 				{ThreadID(ID{p + 2, 0}), "t2", Counts{2, 3, 4, 5, 6, 7, 0, 0}, "", States{}},
 			}),
 			GroupByName{
-				"g1": Group{Counts{}, States{}, msi{}, 1, Memory{}, tm, 1, 1, 2, []Threads{
-					Threads{"t2", 2, Counts{4, 5, 6, 7, 8, 9, 0, 0}},
-				}},
+				"g1": Group{Counts{}, States{}, msi{}, 1, Memory{}, tm, 1, 1, 2,
+					[]Threads{
+						{"t2", 2, Counts{4, 5, 6, 7, 8, 9, 0, 0}},
+					}},
 			},
 		},
 	}

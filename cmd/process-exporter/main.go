@@ -262,7 +262,7 @@ func main() {
 	http.Handle(*metricsPath, promhttp.Handler())
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte(`<html>
+		_, _ = w.Write([]byte(`<html>
 			<head><title>Named Process Exporter</title></head>
 			<body>
 			<h1>Named Process Exporter</h1>

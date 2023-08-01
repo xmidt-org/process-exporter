@@ -111,7 +111,7 @@ func lessUpdateGroupName(x, y Update) bool { return x.GroupName < y.GroupName }
 
 func lessThreadUpdate(x, y ThreadUpdate) bool { return seq.Compare(x, y) < 0 }
 
-func lessCounts(x, y Counts) bool { return seq.Compare(x, y) < 0 }
+func lessCounts(x, y Counts) bool { return seq.Compare(x, y) < 0 } //nolint:golint,unused
 
 func (tp *trackedProc) getUpdate() Update {
 	u := Update{
@@ -176,7 +176,7 @@ func (t *Tracker) track(groupName string, idinfo IDInfo) {
 
 func (t *Tracker) ignore(id ID) {
 	// only ignore ID if we didn't set recheck to true
-	if t.alwaysRecheck == false {
+	if !t.alwaysRecheck {
 		t.tracked[id] = nil
 	}
 }

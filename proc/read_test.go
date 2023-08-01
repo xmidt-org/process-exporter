@@ -138,7 +138,7 @@ func TestAllProcs(t *testing.T) {
 		if metrics.States == zstates {
 			t.Errorf("got empty states")
 		}
-		threads, err := procs.GetThreads()
+		threads, _ := procs.GetThreads()
 		if len(threads) < 2 {
 			t.Errorf("got %d thread details, want >1", len(threads))
 		}

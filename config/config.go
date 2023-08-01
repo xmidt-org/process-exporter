@@ -115,7 +115,7 @@ func (m *matchNamer) MatchAndName(nacl common.ProcAttributes) (bool, string) {
 	}
 
 	var buf bytes.Buffer
-	m.template.Execute(&buf, &templateParams{
+	_ = m.template.Execute(&buf, &templateParams{
 		Comm:      nacl.Name,
 		Cgroups:   nacl.Cgroups,
 		ExeBase:   exebase,

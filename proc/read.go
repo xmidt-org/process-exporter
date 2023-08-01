@@ -279,7 +279,7 @@ func (p *proccache) GetPid() int {
 
 func (p *proccache) getStat() (procfs.ProcStat, error) {
 	if p.stat == nil {
-		stat, err := p.Proc.NewStat()
+		stat, err := p.Proc.Stat()
 		if err != nil {
 			return procfs.ProcStat{}, err
 		}
@@ -495,7 +495,7 @@ func (p proc) GetMetrics() (Metrics, int, error) {
 		softerrors |= 1
 	}
 
-	limits, err := p.Proc.NewLimits()
+	limits, err := p.Proc.Limits()
 	if err != nil {
 		return Metrics{}, 0, err
 	}
@@ -593,7 +593,7 @@ func NewFS(mountPoint string, debug bool) (*FS, error) {
 	if err != nil {
 		return nil, err
 	}
-	stat, err := fs.NewStat()
+	stat, err := fs.Stat()
 	if err != nil {
 		return nil, err
 	}
