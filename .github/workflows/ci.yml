@@ -26,4 +26,5 @@ jobs:
       release-type:             program
       license:                  MIT
       release-with-unique-user: false
+      release-main-package:     cmd/process-exporter/.
     secrets: inherit
