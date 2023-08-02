@@ -26,5 +26,5 @@ jobs:
       release-type:             program
       license:                  MIT
       release-with-unique-user: false
-      release-main-package:     cmd/process-exporter/.
+      release-main-package:     cmd/process-exporter/main.go
     secrets: inherit
