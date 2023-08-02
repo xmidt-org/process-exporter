@@ -1,11 +1,14 @@
 # process-exporter
 Prometheus exporter that mines /proc to report on selected processes.
 
-[release]: https://github.com/ncabatoff/process-exporter/releases/latest
-
-[![Release](https://img.shields.io/github/release/ncabatoff/process-exporter.svg?style=flat-square")][release]
+[![Build Status](https://github.com/xmidt-org/process-exporter/actions/workflows/ci.yml/badge.svg)](https://github.com/xmidt-org/process-exporter/actions/workflows/ci.yml)
+[![codecov.io](http://codecov.io/github/xmidt-org/process-exporter/coverage.svg?branch=main)](http://codecov.io/github/xmidt-org/process-exporter?branch=main)
+[![Go Report Card](https://goreportcard.com/badge/github.com/xmidt-org/process-exporter)](https://goreportcard.com/report/github.com/xmidt-org/process-exporter)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/xmidt-org/process-exporter/blob/main/LICENSE)
+[![Release](https://img.shields.io/github/release/xmidt-org/process-exporter.svg?style=flat-square")][release]
 [![Powered By: GoReleaser](https://img.shields.io/badge/powered%20by-goreleaser-green.svg?branch=master)](https://github.com/goreleaser)
-![Build](https://github.com/ncabatoff/process-exporter/actions/workflows/build.yml/badge.svg)
+
+[release]: https://github.com/xmidt-org/process-exporter/releases/latest
 
 Some apps are impractical to instrument directly, either because you
 don't control the code or they're written in a language that isn't easy to
@@ -13,8 +16,7 @@ instrument with Prometheus.  We must instead resort to mining /proc.
 
 ## Installation
 
-Either grab a package for your OS from the [Releases][release] page, or
-install via [docker](https://hub.docker.com/r/ncabatoff/process-exporter/).
+Grab a package for your OS from the [Releases][release] page.
 
 ## Running
 
@@ -23,13 +25,9 @@ Usage:
 ```
   process-exporter [options] -config.path filename.yml
 ```
-
-or via docker:
-
-```
-  docker run -d --rm -p 9256:9256 --privileged -v /proc:/host/proc -v `pwd`:/config ncabatoff/process-exporter --procfs /host/proc -config.path /config/filename.yml
-
-```
+The `config.path` can be either a file or a directory that contains multiple
+yml files that are composed into a single configuration.  This allows composing
+the processes observed at run time instead of needing to pre-merge into a single file.
 
 Important options (run process-exporter --help for full list):
 
