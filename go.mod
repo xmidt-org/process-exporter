@@ -4,7 +4,7 @@ go 1.13
 
 require (
 	github.com/go-logfmt/logfmt v0.6.0 // indirect
-	github.com/google/go-cmp v0.5.9
+	github.com/google/go-cmp v0.6.0
 	github.com/goschtalt/goschtalt v0.22.1
 	github.com/goschtalt/yaml-decoder v0.0.1
 	github.com/goschtalt/yaml-encoder v0.0.3
