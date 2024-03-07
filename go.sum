@@ -818,8 +818,8 @@ github.com/googleapis/google-cloud-go-testing v0.0.0-20200911160855-bcd43fbb19e8
 github.com/goschtalt/approx v1.0.0/go.mod h1:Mh0VbpeEgO2Qo2PKGrSuz241D/nj9q7OPegJNWzrbIU=
 github.com/goschtalt/goschtalt v0.3.4/go.mod h1:l9PsWB+jhCh4hnjAblqLUGTUSnxogQcgERZs8V9rg0g=
 github.com/goschtalt/goschtalt v0.6.0/go.mod h1:l9PsWB+jhCh4hnjAblqLUGTUSnxogQcgERZs8V9rg0g=
-github.com/goschtalt/goschtalt v0.23.1 h1:HZt3VVj9O2Aq8o75/9MmyRk4XW5nyFE2cNhB/Ym2Fbs=
-github.com/goschtalt/goschtalt v0.23.1/go.mod h1:zlU4ym/QxRDoPZMMyJz9PdKATgYd2FwIF1UoBWsUWH8=
+github.com/goschtalt/goschtalt v0.23.3 h1:TUE9lbG3UEeUTMqsnt4wO6qrCWKfyPeZpSiAVlFiGCA=
+github.com/goschtalt/goschtalt v0.23.3/go.mod h1:hqTyHrC0hcUJLPPdsGVi0Nv6KNRd1qb0wJWNyJ/vy74=
 github.com/goschtalt/yaml-decoder v0.0.1 h1:fwXf5OoC2tUm6+FOzMizvh6UITFALw6OWxJTVNgbJwg=
 github.com/goschtalt/yaml-decoder v0.0.1/go.mod h1:b+hYjmM/e9rzRhPB8EKlb+LUwrgntMrOpqEAel3wRGQ=
 github.com/goschtalt/yaml-encoder v0.0.3 h1:vfQ3vXZNvoEFPa3NzOWNtweYVa+2qMh8eqhXByLi2t0=
@@ -970,6 +970,7 @@ github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+
 github.com/stretchr/objx v0.1.1/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/objx v0.4.0/go.mod h1:YvHI0jy2hoMjB+UWwv71VJQ9isScKT/TqJzVSSt89Yw=
 github.com/stretchr/objx v0.5.0/go.mod h1:Yh+to48EsGEfYuaHDzXPcE3xhTkx73EhmCGUpEOglKo=
+github.com/stretchr/objx v0.5.2/go.mod h1:FRsXN1f5AsAjCGJKqEizvkpNtU+EGNCLh3NxZ/8L+MA=
 github.com/stretchr/testify v1.2.2/go.mod h1:a8OnRcib4nhh0OaRAV+Yts87kKdq0PP7pXfy6kDkUVs=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
@@ -980,8 +981,9 @@ github.com/stretchr/testify v1.7.1/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/
 github.com/stretchr/testify v1.8.0/go.mod h1:yNjHg4UonilssWZ8iaSj1OCr/vHnekPRkoO+kdMU+MU=
 github.com/stretchr/testify v1.8.1/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
 github.com/stretchr/testify v1.8.2/go.mod h1:w2LPCIKwWwSfY2zedu0+kehJoqGctiVI29o6fzry7u4=
-github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
 github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
+github.com/stretchr/testify v1.9.0 h1:HtqpIVDClZ4nwg75+f6Lvsy/wHu+3BoSGCbBAcpTsTg=
+github.com/stretchr/testify v1.9.0/go.mod h1:r2ic/lqez/lEtzL7wO/rwa5dbSLXVDPFyf8C91i36aY=
 github.com/xhit/go-str2duration v1.2.0/go.mod h1:3cPSlfZlUHVlneIVfePFWcJZsuwf+P1v2SRTV4cUmp4=
 github.com/xhit/go-str2duration/v2 v2.1.0/go.mod h1:ohY8p+0f07DiV6Em5LKB0s2YpLtXVyJfNt1+BlmyAsU=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
