@@ -27,4 +27,5 @@ jobs:
       license:                  MIT
       release-with-unique-user: false
       release-main-package:     cmd/process-exporter/main.go
+      yaml-lint-skip: false
     secrets: inherit
