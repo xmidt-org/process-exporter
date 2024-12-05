@@ -11,7 +11,7 @@ require (
 	github.com/ncabatoff/fakescraper v0.0.0-20201102132415-4b37ba603d65
 	github.com/ncabatoff/go-seq v0.0.0-20180805175032-b08ef85ed833
 	github.com/prometheus/client_golang v1.20.5
-	github.com/prometheus/common v0.60.1
+	github.com/prometheus/common v0.61.0
 	github.com/prometheus/exporter-toolkit v0.13.1
 	github.com/prometheus/procfs v0.15.1
 	github.com/rogpeppe/go-internal v1.11.0 // indirect
