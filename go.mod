@@ -7,7 +7,7 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/goschtalt/goschtalt v0.25.0
 	github.com/goschtalt/yaml-decoder v0.0.1
-	github.com/goschtalt/yaml-encoder v0.0.3
+	github.com/goschtalt/yaml-encoder v0.0.4
 	github.com/ncabatoff/fakescraper v0.0.0-20201102132415-4b37ba603d65
 	github.com/ncabatoff/go-seq v0.0.0-20180805175032-b08ef85ed833
 	github.com/prometheus/client_golang v1.20.5
