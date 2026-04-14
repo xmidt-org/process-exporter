@@ -9,10 +9,10 @@ require (
 	github.com/goschtalt/yaml-encoder v0.0.4
 	github.com/ncabatoff/fakescraper v0.0.0-20201102132415-4b37ba603d65
 	github.com/ncabatoff/go-seq v0.0.0-20180805175032-b08ef85ed833
-	github.com/prometheus/client_golang v1.20.4
+	github.com/prometheus/client_golang v1.23.2
 	github.com/prometheus/common v0.67.5
 	github.com/prometheus/exporter-toolkit v0.16.0
-	github.com/prometheus/procfs v0.15.1
+	github.com/prometheus/procfs v0.16.1
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
 	gopkg.in/yaml.v2 v2.4.0
 )
@@ -24,7 +24,6 @@ require (
 	github.com/golang-jwt/jwt/v5 v5.3.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/jpillora/backoff v1.0.0 // indirect
-	github.com/klauspost/compress v1.17.9 // indirect
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/kr/text v0.2.0 // indirect
 	github.com/mdlayher/socket v0.4.1 // indirect
