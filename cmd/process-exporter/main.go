@@ -1,14 +1,17 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"log"
 	"net/http"
 	_ "net/http/pprof"
 	"os"
+	"os/signal"
 	"regexp"
 	"strings"
+	"syscall"
 	"time"
 
 	"github.com/goschtalt/goschtalt"
@@ -19,6 +22,7 @@ import (
 	"github.com/ncabatoff/process-exporter/collector"
 	"github.com/ncabatoff/process-exporter/config"
 	"github.com/prometheus/client_golang/prometheus"
+	verCollector "github.com/prometheus/client_golang/prometheus/collectors/version"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/prometheus/common/promlog"
 	promVersion "github.com/prometheus/common/version"
@@ -144,7 +148,7 @@ func (nmr *nameMapperRegex) MatchAndName(nacl common.ProcAttributes) (bool, stri
 
 func init() {
 	promVersion.Version = version
-	prometheus.MustRegister(promVersion.NewCollector("process_exporter"))
+	prometheus.MustRegister(verCollector.NewCollector("process_exporter"))
 }
 
 func main() {
@@ -175,12 +179,15 @@ func main() {
 			"path to YAML web config file")
 		recheck = flag.Bool("recheck", false,
 			"recheck process names on each scrape")
+		recheckTimeLimit = flag.Duration("recheck-with-time-limit", 0,
+			"recheck processes only this much time after their start, but no longer.")
 		debug = flag.Bool("debug", false,
 			"log debugging information to stdout")
 		showVersion = flag.Bool("version", false,
 			"print version information and exit")
 		show = flag.Bool("show", false,
 			"print configuration information and exit")
+		removeEmptyGroups = flag.Bool("remove-empty-groups", false, "forget process groups with no processes")
 	)
 	flag.Parse()
 
@@ -257,15 +264,21 @@ func main() {
 		matchnamer = namemapper
 	}
 
+	if *recheckTimeLimit != 0 {
+		*recheck = true
+	}
+
 	pc, err := collector.NewProcessCollector(
 		collector.ProcessCollectorOption{
-			ProcFSPath:  *procfsPath,
-			Children:    *children,
-			Threads:     *threads,
-			GatherSMaps: *smaps,
-			Namer:       matchnamer,
-			Recheck:     *recheck,
-			Debug:       *debug,
+			ProcFSPath:        *procfsPath,
+			Children:          *children,
+			Threads:           *threads,
+			GatherSMaps:       *smaps,
+			Namer:             matchnamer,
+			Recheck:           *recheck,
+			RecheckTimeLimit:  *recheckTimeLimit,
+			Debug:             *debug,
+			RemoveEmptyGroups: *removeEmptyGroups,
 		},
 	)
 	if err != nil {
@@ -285,6 +298,9 @@ func main() {
 		return
 	}
 
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGTERM, syscall.SIGINT)
+
 	http.Handle(*metricsPath, promhttp.Handler())
 
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -301,7 +317,20 @@ func main() {
 		WebListenAddresses: func() *[]string { rv := []string{*listenAddress}; return &rv }(),
 		WebConfigFile:      tlsConfigFile,
 	}
-	if err := web.ListenAndServe(server, &flagsCfg, logger); err != nil {
+
+	go func() {
+		<-sigs
+		log.Printf("Shutting down the server\n")
+
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+
+		if err := server.Shutdown(ctx); err != nil {
+			log.Fatalf("Server Shutdown Failed: %v", err)
+		}
+	}()
+
+	if err := web.ListenAndServe(server, &flagsCfg, logger); err != nil && err != http.ErrServerClosed {
 		log.Fatalf("Failed to start the server: %v", err)
 		os.Exit(1)
 	}
