@@ -44,10 +44,16 @@ as well as group name.
 re-evaluated. This is disabled by default as an optimization, but since
 processes can choose to change their names, this may result in a process
 falling into the wrong group if we happen to see it for the first time before
-it's assumed its proper name.
+it's assumed its proper name. You can use -recheck-with-time-limit to enable this
+feature only for a specific duration after process starts.
 
 -procnames is intended as a quick alternative to using a config file.  Details
 in the following section.
+
+-remove-empty-groups (default:false) forget process groups with no processes.
+This is particularly useful if you have some process groups that you expect will 
+never return (e.g. if you have process groups named "scan-<scan-id>", and once 
+the scan is completed no more process will ever run for that scan again).
 
 To disable any of these options, use the `-option=false`.
 
@@ -369,7 +375,7 @@ An example Grafana dashboard to view the metrics is available at https://grafana
 
 ## Building
 
-Requires Go 1.13 installed.
+Requires Go 1.21 (at least) installed.
 ```
 make
 ```
