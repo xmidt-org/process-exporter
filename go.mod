@@ -1,6 +1,6 @@
 module github.com/ncabatoff/process-exporter
 
-go 1.26
+go 1.27.3
 
 require (
 	github.com/google/go-cmp v0.7.0
